@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Theme.PocMVVM" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.PocMVVM" parent="Theme.MaterialComponents.DayNight.NoActionBar" >
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+    </style>
+
+    <style name="Theme.CustomSplashScreen" parent="Theme.SplashScreen" >
+        <item name="windowSplashScreenAnimatedIcon">@drawable/running_man_</item>
+        <item name="postSplashScreenTheme">@style/Theme.PocMVVM</item>"
+        <item name="android:windowBackground">@color/white</item>
+    </style>
+
+
 </resources>

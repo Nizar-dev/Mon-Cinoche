@@ -1,58 +1,72 @@
 package apps.nb.working.pocmvvm.ui.theme
 
-import android.app.Activity
-import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.runtime.Immutable
+import androidx.compose.ui.graphics.Color
 
-private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+// Dégradé rouge et noir pour un look cinéma
+private val RedDark = Color(0xFFB71C1C) // Rouge profond
+private val DarkBackground = Color(0xFF121212) // Noir profond
+private val GrayBackground = Color(0xFF1C1C1C) // Gris anthracite pour thème sombre
+private val LightBackground = Color(0xFF202020) // Gris très clair pour le thème clair
+private val AccentRed = Color(0xFFD32F2F) // Rouge plus vif pour les éléments sélectionnés
+
+// Thème clair avec une base plus douce
+private val lightScheme = lightColorScheme(
+    primary = AccentRed,
+    onPrimary = Color.White,
+    background = LightBackground,
+    onBackground = Color.Black,
+    surface = LightBackground,
+    onSurface = Color.Black,
+    error = Color.Red,
+    onError = Color.White,
+    secondary = AccentRed,
+    onSecondary = Color.White
 )
 
-private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
+// Thème sombre avec noir et rouge prédominant
+private val darkScheme = darkColorScheme(
+    primary = RedDark,
     onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+    background = DarkBackground,
+    onBackground = Color.White,
+    surface = GrayBackground,
+    onSurface = Color.White,
+    error = Color.Red,
+    onError = Color.White,
+    secondary = RedDark
+)
+
+@Immutable
+data class ColorFamily(
+    val color: Color,
+    val onColor: Color,
+    val colorContainer: Color,
+    val onColorContainer: Color
+)
+
+val unspecified_scheme = ColorFamily(
+    Color.Unspecified,
+    Color.Unspecified,
+    Color.Unspecified,
+    Color.Unspecified
 )
 
 @Composable
-fun PocMVVMTheme(
+fun POCMVVMTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
-    content: @Composable () -> Unit
+    content: @Composable() () -> Unit
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
-    }
+    val colorScheme = if (darkTheme) darkScheme else lightScheme
 
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = Typography,
+        typography = AppTypography,
         content = content
     )
 }

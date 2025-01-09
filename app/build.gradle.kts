@@ -1,12 +1,11 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.10"
-
-    id("com.google.dagger.hilt.android")
-
-    id ("kotlin-kapt")
+    alias(libs.plugins.google.devtools.ksp)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.google.dagger.hilt.android)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.kotlin.compose)
 }
 
 android {
@@ -15,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId = "apps.nb.working.pocmvvm"
-        minSdk = 24
+        minSdk = 31
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -45,9 +44,7 @@ android {
     buildFeatures {
         compose = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
-    }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -65,6 +62,13 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.material)
+    implementation(libs.android.material)
+    implementation(libs.androidx.media3.common)
+    implementation(libs.androidx.ui.text.google.fonts)
+    implementation(libs.androidx.paging.common.android)
+    implementation(libs.androidx.paging.compose)
+    implementation(libs.androidx.paging.runtime)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -72,34 +76,39 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-
+    implementation(libs.androidx.splashscreen)
+    implementation(libs.androidx.lifecycle)
     /**
      * Retrofit
      */
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation ("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2")
-    implementation ("com.squareup.okhttp3:okhttp:5.0.0-alpha.2")
+    implementation(libs.squareup.retrofit2)
+    implementation(libs.squareup.retrofit2.gson)
+    implementation(libs.squareup.okhttp3)
 
     /**
      * Coroutine
      */
-    //Coroutine
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1")
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2")
-    implementation ("com.google.code.gson:gson:2.8.6")
-
-    //viewModel
-    //implementation ("android.arch.lifecycle:extensions:1.1.1")
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
-
-    //Glide
-    implementation ("com.github.bumptech.glide:glide:4.12.0")
-    kapt ("com.github.bumptech.glide:compiler:4.12.0")
-    testImplementation ("com.squareup.okhttp3:mockwebserver:4.9.0")
+    // Coroutine
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.kotlinx.coroutines.core)
 
     // Dagger hilt
-    implementation("com.google.dagger:hilt-android:2.48")
-    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
-    kapt("com.google.dagger:hilt-android-compiler:2.48")
+    implementation(libs.dagger.hilt)
+    ksp(libs.android.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation)
+
+    // coil
+    implementation(libs.coil.compose)
+    // room
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    kapt(libs.androidx.room.compiler)
+    // Navigation
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.kotlinx.serialization.json)
+    // unit testing
+    testImplementation(libs.mockk)
+    testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.cash.turbine)
 }

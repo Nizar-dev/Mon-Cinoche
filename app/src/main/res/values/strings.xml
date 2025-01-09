@@ -1,3 +1,34 @@
 <resources>
     <string name="app_name">pocMVVM</string>
+    <string name="api_tmdb_key">cef2fa974d995afe227689ee5928c509</string>
+    <string name="accueil">Accueil</string>
+    <string name="recherche">recherche</string>
+    <string name="favorites">Favoris</string>
+    <string name="revenir_accueil">Revenir </string>
+    <string name="add_to_favorites">Ajouter aux favoris</string>
+    <string name="favorites_movies">" Vos films préférés"</string>
+    <string name="saisir_le_titre_du_film">Saisir le titre du film</string>
+    <string name="search">Rechercher</string>
+    <string name="movies_found">"Nombre de films trouvés : %1$s "</string>
+    <string name="movie_already_in_favorites">Ce film est déjà dans vos favoris</string>
+    <string name="films_decouvrir">Films à découvrir : </string>
+    <string name="upcoming_movies">Bientôt à l\'affiche.</string>
+    <string name="trending_movies">Les films à la Une.</string>
+    <string name="popular_movies">Films populaires.</string>
+    <string name="preferences_title">Mes préférences !</string>
+    <string name="prefered_genres">Mes genres préférés :</string>
+    <string name="all_genres">Tous les genres disponibles :</string>
+    <string name="drop_here">" Glissez ici  + "</string>
+    <string name="loading">Loading Movie Details</string>
+    <string name="idle_state">Idle state</string>
+    <string name="le_synopsis_de_votre_film">Synopsis </string>
+    <string name="la_date_de_sortie">La date de sortie :</string>
+    <string name="la_note_des_spectateurs">La note des spectateurs :</string>
+    <string name="search_screen">"Chercher un film "</string>
+    <string name="pas_de_date_prevue">Pas de date prévue</string>
+    <string name="movie_added_to_favorites">Bien ajouté aux favoris.</string>
+    <string name="remove_from_favorites">Enlever des favoris</string>
+    <string name="movie_removed_from_favorites">Le film a été enlevé de vos favoris</string>
+    <string name="connexion_lost">"Connection perdue, notre astronaute arrive !! "</string>
+    <string name="drag_and_drop_here">Glissez ici !!</string>
 </resources>
